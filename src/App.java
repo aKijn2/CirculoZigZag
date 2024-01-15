@@ -9,13 +9,13 @@ public class App extends JFrame {
     }
 
     private void initUI() {
-        setSize(300, 300);
+        setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         myPanel = new MyPanel();
         add(myPanel);
 
-        Timer timer = new Timer(200, e -> {
+        Timer timer = new Timer(5, e -> {
             moveBall();
             myPanel.repaint();
         });

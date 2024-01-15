@@ -7,8 +7,8 @@ public class MyPanel extends JPanel {
     private int height = 20;
     private int positionX = 0;
     private int positionY = 0;
-    private int xSpeed = 100;
-    private int ySpeed = 100;
+    private int xSpeed = 2;
+    private int ySpeed = 2;
 
     private String marcador = "0";
 
@@ -27,18 +27,12 @@ public class MyPanel extends JPanel {
         if (positionX >= getWidth() - width && positionY >= getHeight() - height) {
             marcador = String.valueOf(Integer.parseInt(marcador) + 1);
         }
-        if (positionX <= 0 && positionY <= 0) {
-            marcador = String.valueOf(Integer.parseInt(marcador) + 1);
-
-        } else {
-
-        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
-        g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         g.setColor(Color.RED);
