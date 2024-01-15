@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MyPanel extends JPanel {
 
@@ -12,7 +14,12 @@ public class MyPanel extends JPanel {
 
     private String marcador = "0";
 
+    private long lastUpdateTime = System.currentTimeMillis();
+
     public void moveBall() {
+        long currentTime = System.currentTimeMillis();
+        long elapsedTime = currentTime - lastUpdateTime;
+
         positionX += xSpeed;
         positionY += ySpeed;
 
@@ -27,11 +34,12 @@ public class MyPanel extends JPanel {
         if (positionX >= getWidth() - width && positionY >= getHeight() - height) {
             marcador = String.valueOf(Integer.parseInt(marcador) + 1);
         }
+
+        lastUpdateTime = currentTime;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-
         super.paintComponent(g);
         g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -40,7 +48,6 @@ public class MyPanel extends JPanel {
 
         g.setColor(Color.WHITE);
         g.drawString(marcador, getWidth() / 2 - 15, 20);
-        g.toString();
     }
 
     public void setMarcador(String marcador) {

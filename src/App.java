@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class App extends JFrame {
@@ -15,9 +18,12 @@ public class App extends JFrame {
         myPanel = new MyPanel();
         add(myPanel);
 
-        Timer timer = new Timer(5, e -> {
-            moveBall();
-            myPanel.repaint();
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                moveBall();
+                myPanel.repaint();
+            }
         });
 
         timer.start();
