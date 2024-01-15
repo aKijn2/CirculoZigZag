@@ -13,15 +13,16 @@ public class App extends JFrame {
     private boolean moveDown = true;
 
     public App() {
+        initUI();
+    }
+
+    private void initUI() {
         setSize(300, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Timer timer = new Timer(200, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                moveBall();
-                repaint();
-            }
+        Timer timer = new Timer(200, e -> {
+            moveBall();
+            repaint();
         });
 
         timer.start();
@@ -52,12 +53,14 @@ public class App extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        
+        g.setColor(Color.WHITE);
         drawBall(g);
     }
 
     private void drawBall(Graphics g) {
-        g.clearRect(0, 0, getWidth(), getHeight());
-
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (i == positionY && j == positionX) {
@@ -68,11 +71,6 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new App().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new App().setVisible(true));
     }
 }
