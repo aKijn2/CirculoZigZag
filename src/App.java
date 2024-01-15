@@ -55,9 +55,12 @@ public class App extends JFrame {
         super.paint(g);
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
-        
+
         g.setColor(Color.WHITE);
         drawBall(g);
+
+        // El marcador lo pondre proximamente
+        g.drawString("Marcador", getWidth() / 2 - 30, 20);
     }
 
     private void drawBall(Graphics g) {
