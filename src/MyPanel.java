@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MyPanel extends JPanel {
 
@@ -11,8 +13,35 @@ public class MyPanel extends JPanel {
     private int ySpeed = 2;
     private int plataformaRevota = 40;
 
-    private String marcador = "0";
+    private boolean moveLeft = false;
+    private boolean moveRight = false;
 
+    public MyPanel() {
+        setFocusable(true);
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_A) {
+                    moveLeft = true;
+                } else if (key == KeyEvent.VK_D) {
+                    moveRight = true;
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_A) {
+                    moveLeft = false;
+                } else if (key == KeyEvent.VK_D) {
+                    moveRight = false;
+                }
+            }
+        });
+    }
+
+    private String marcador = "0";
     private long lastUpdateTime = System.currentTimeMillis();
 
     public void moveBall() {
@@ -34,7 +63,19 @@ public class MyPanel extends JPanel {
             marcador = String.valueOf(Integer.parseInt(marcador) + 1);
         }
 
+        movePlatform(); // Agregar esta línea para mover la plataforma
+
         lastUpdateTime = currentTime;
+    }
+
+    private void movePlatform() {
+        if (moveLeft) {
+            plataformaRevota -= 2;
+        } else if (moveRight) {
+            plataformaRevota += 2;
+        }
+
+        plataformaRevota = Math.max(20, Math.min(getWidth() - 20, plataformaRevota));
     }
 
     @Override
@@ -42,13 +83,13 @@ public class MyPanel extends JPanel {
         super.paintComponent(g);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        g.setColor(Color.RED);
+        g.setColor(Color.ORANGE);
         g.fillOval(positionX, positionY, ballWidth, ballHeight);
 
         g.setColor(Color.WHITE);
         g.drawString(marcador, getWidth() / 2 - 15, 20);
 
-        g.setColor(Color.BLUE);
+        g.setColor(Color.WHITE);
 
         for (int i = 0; i < 3; i++) {
             g.fillRect(getWidth() / 2 - plataformaRevota / 2 + plataformaRevota * i, getHeight() - plataformaRevota * 2,
