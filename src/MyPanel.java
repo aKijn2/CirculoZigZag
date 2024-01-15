@@ -23,6 +23,16 @@ public class MyPanel extends JPanel {
         if (positionY <= 0 || positionY >= getHeight() - height) {
             ySpeed = -ySpeed;
         }
+
+        if (positionX >= getWidth() - width && positionY >= getHeight() - height) {
+            marcador = String.valueOf(Integer.parseInt(marcador) + 1);
+        }
+        if (positionX <= 0 && positionY <= 0) {
+            marcador = String.valueOf(Integer.parseInt(marcador) + 1);
+
+        } else {
+
+        }
     }
 
     @Override
