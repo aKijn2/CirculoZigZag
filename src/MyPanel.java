@@ -1,16 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MyPanel extends JPanel {
 
-    private int width = 20;
-    private int height = 20;
+    private int ballWidth = 20;
+    private int ballHeight = 20;
     private int positionX = 0;
     private int positionY = 0;
     private int xSpeed = 2;
     private int ySpeed = 2;
+    private int plataformaRevota = 40;
 
     private String marcador = "0";
 
@@ -23,15 +22,15 @@ public class MyPanel extends JPanel {
         positionX += xSpeed;
         positionY += ySpeed;
 
-        if (positionX <= 0 || positionX >= getWidth() - width) {
+        if (positionX <= 0 || positionX >= getWidth() - ballWidth) {
             xSpeed = -xSpeed;
         }
 
-        if (positionY <= 0 || positionY >= getHeight() - height) {
+        if (positionY <= 0 || positionY >= getHeight() - ballHeight) {
             ySpeed = -ySpeed;
         }
 
-        if (positionX >= getWidth() - width && positionY >= getHeight() - height) {
+        if (positionX >= getWidth() - ballWidth && positionY >= getHeight() - ballHeight) {
             marcador = String.valueOf(Integer.parseInt(marcador) + 1);
         }
 
@@ -44,10 +43,17 @@ public class MyPanel extends JPanel {
         g.fillRect(0, 0, getWidth(), getHeight());
 
         g.setColor(Color.RED);
-        g.fillOval(positionX, positionY, width, height);
+        g.fillOval(positionX, positionY, ballWidth, ballHeight);
 
         g.setColor(Color.WHITE);
         g.drawString(marcador, getWidth() / 2 - 15, 20);
+
+        g.setColor(Color.BLUE);
+
+        for (int i = 0; i < 3; i++) {
+            g.fillRect(getWidth() / 2 - plataformaRevota / 2 + plataformaRevota * i, getHeight() - plataformaRevota * 2,
+                    plataformaRevota, plataformaRevota);
+        }
     }
 
     public void setMarcador(String marcador) {

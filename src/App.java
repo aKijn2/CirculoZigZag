@@ -18,7 +18,7 @@ public class App extends JFrame {
         myPanel = new MyPanel();
         add(myPanel);
 
-        Timer timer = new Timer(10, new ActionListener() {
+        Timer timer = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 moveBall();
