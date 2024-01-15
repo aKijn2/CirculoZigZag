@@ -7,8 +7,8 @@ public class MyPanel extends JPanel {
     private int height = 20;
     private int positionX = 0;
     private int positionY = 0;
-    private int xSpeed = 10;
-    private int ySpeed = 10;
+    private int xSpeed = 100;
+    private int ySpeed = 100;
 
     private String marcador = "0";
 
@@ -36,5 +36,10 @@ public class MyPanel extends JPanel {
 
         g.setColor(Color.WHITE);
         g.drawString(marcador, getWidth() / 2 - 15, 20);
+        g.toString();
+    }
+
+    public void setMarcador(String marcador) {
+        this.marcador = marcador;
     }
 }
