@@ -9,8 +9,8 @@ public class App extends JFrame {
     private int height = 20;
     private int positionX = 0;
     private int positionY = 0;
-    private boolean moveRight = true;
-    private boolean moveDown = true;
+    private int xSpeed = 7;
+    private int ySpeed = 7;
 
     public App() {
         initUI();
@@ -29,48 +29,37 @@ public class App extends JFrame {
     }
 
     private void moveBall() {
-        if (moveRight) {
-            positionX++;
-        } else {
-            positionX--;
+        positionX += xSpeed;
+        positionY += ySpeed;
+
+        if (positionX <= 0 || positionX >= getWidth() - width) {
+            xSpeed = -xSpeed;
         }
 
-        if (moveDown) {
-            positionY++;
-        }
-
-        if (positionX == 0 || positionX == width - 1) {
-            moveRight = !moveRight;
-        }
-
-        if (positionY == height) {
-            moveDown = false;
-        } else if (positionY == 0) {
-            moveDown = true;
+        if (positionY <= 0 || positionY >= getHeight() - height) {
+            ySpeed = -ySpeed;
         }
     }
 
     @Override
     public void paint(Graphics g) {
+
+        // Esto es el color de fondo.
         super.paint(g);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
 
-        g.setColor(Color.WHITE);
+
+        // Esto es el color que cogera la pelota.
+        g.setColor(Color.RED);
         drawBall(g);
 
-        // El marcador lo pondre proximamente
+        // Añadir un marcador en el centro superior
         g.drawString("Marcador", getWidth() / 2 - 30, 20);
     }
 
     private void drawBall(Graphics g) {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (i == positionY && j == positionX) {
-                    g.drawString("o", j * 15, i * 15);
-                }
-            }
-        }
+        g.fillOval(positionX, positionY, width, height);
     }
 
     public static void main(String[] args) {
