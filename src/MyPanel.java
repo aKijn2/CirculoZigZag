@@ -69,13 +69,15 @@ public class MyPanel extends JPanel {
     }
 
     private void movePlatform() {
+        int speed = 2;
+
         if (moveLeft) {
-            plataformaRevota -= 2;
+            plataformaRevota -= speed;
         } else if (moveRight) {
-            plataformaRevota += 2;
+            plataformaRevota += speed;
         }
 
-        plataformaRevota = Math.max(20, Math.min(getWidth() - 20, plataformaRevota));
+        plataformaRevota = Math.max(0, Math.min(getWidth() - getWidth() / 10, plataformaRevota));
     }
 
     @Override

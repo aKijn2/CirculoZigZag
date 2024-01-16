@@ -1,18 +1,23 @@
-## Getting Started
+# Proyecto de Juego en Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este proyecto es un juego simple desarrollado en Java utilizando la biblioteca Swing para la interfaz gráfica. El juego consiste en una bola que rebota alrededor de la ventana y una plataforma que puedes controlar para rebotar la bola y evitar que se escape por la parte inferior.
 
-## Folder Structure
+## Características Principales
 
-The workspace contains two folders by default, where:
+- **Bola Rebotadora:** Una bola que se mueve por la ventana y rebota en los bordes.
+- **Plataforma Controlada por el Usuario:** Utiliza las teclas 'A' y 'D' para mover la plataforma hacia la izquierda y la derecha, respectivamente.
+- **Marcador:** Lleva un registro de la puntuación cada vez que la bola alcanza la parte inferior de la ventana.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Cómo Ejecutar el Juego
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+Asegúrate de tener instalado Java en tu sistema. Puedes ejecutar el juego descargando el código fuente y compilándolo con un entorno de desarrollo Java, luego ejecuta la clase `App.java`.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+```bash
+javac App.java
+java App
+```
 
-## Dependency Management
+## Cómo Ejecutar el Juego
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- A: Mover la plataforma hacia la izquierda.
+- D: Mover la plataforma hacia la derecha.
