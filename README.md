@@ -16,8 +16,3 @@ Asegúrate de tener instalado Java en tu sistema. Puedes ejecutar el juego desca
 javac App.java
 java App
 ```
-
-## Cómo Ejecutar el Juego
-
-- A: Mover la plataforma hacia la izquierda.
-- D: Mover la plataforma hacia la derecha.
