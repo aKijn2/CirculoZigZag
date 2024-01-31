@@ -63,7 +63,7 @@ public class MyPanel extends JPanel {
             marcador = String.valueOf(Integer.parseInt(marcador) + 1);
         }
 
-        movePlatform(); // Agregar esta línea para mover la plataforma
+        movePlatform();
 
         lastUpdateTime = currentTime;
     }
@@ -73,12 +73,23 @@ public class MyPanel extends JPanel {
 
         if (moveLeft) {
             plataformaRevota -= speed;
+            if (plataformaRevota < 0) {
+                plataformaRevota = 0;
+            }
+            
         } else if (moveRight) {
             plataformaRevota += speed;
+            if (plataformaRevota > getWidth() - 3 * plataformaRevota) {
+                plataformaRevota = getWidth() - 3 * plataformaRevota;
+            }
         }
 
-        plataformaRevota = Math.max(0, Math.min(getWidth() - getWidth() / 10, plataformaRevota));
     }
+
+    public void paint() {
+        repaint();
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {
